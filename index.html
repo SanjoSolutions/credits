@@ -60,7 +60,7 @@
           <span class="credit__name"></span><spac class="credit__by"> by </spac><span class="credit__author"></span>
         </div>
         <div class="credit__links">
-          <a class="credit__toggle-show-license" href="#">Show license</a><a class="credit__url" href="" target="_blank">Website</a>
+          <a class="credit__toggle-show-license" href="#">Show license</a><a class="credit__url" href="#" target="_blank">Website</a>
         </div>
       </div>
       <div class="credit__license"></div>
@@ -82,10 +82,7 @@
         name: 'Project 2',
         author: 'Author 2',
         url: 'http://example.com',
-        license: `A license
-          with multiple lines
-          of text.
-        `
+        licenseUrl: 'https://creativecommons.org/licenses/by-sa/3.0/'
       },
       {
         name: 'Project 2',
@@ -109,12 +106,21 @@
         $credit.querySelector('.credit__author').remove()
       }
       $credit.querySelector('.credit__url').href = credit.url
-      $credit.querySelector('.credit__license').textContent = credit.license
+      if (credit.license) {
+        $credit.querySelector('.credit__license').textContent = credit.license
+      } else {
+        const $showLicense = $credit.querySelector('.credit__toggle-show-license')
+        if (credit.licenseUrl) {
+          $showLicense.href = credit.licenseUrl
+          $showLicense.target = '_blank'
+        }
+        $credit.querySelector('.credit__license').remove()
+      }
       document.body.appendChild($credit)
     }
 
     document.addEventListener('click', function (event) {
-      if (event.target.matches(".credit__toggle-show-license")) {
+      if (event.target.matches(".credit__toggle-show-license") && event.target.getAttribute('href') === "#") {
         event.preventDefault()
         event.target.textContent = event.target.textContent === "Show license" ? "Hide license" : "Show license"
         event.target.closest(".credit").classList.toggle("credit--show-license")
