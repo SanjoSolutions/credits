@@ -57,7 +57,7 @@
     <div class="credit">
       <div class="credit__header">
         <div class="credit__head-line">
-          <span class="credit__name"></span> by <span class="credit__author"></span>
+          <span class="credit__name"></span><spac class="credit__by"> by </spac><span class="credit__author"></span>
         </div>
         <div class="credit__links">
           <a class="credit__toggle-show-license" href="#">Show license</a><a class="credit__url" href="" target="_blank">Website</a>
@@ -86,6 +86,14 @@
           with multiple lines
           of text.
         `
+      },
+      {
+        name: 'Project 2',
+        url: 'http://example.com',
+        license: `A license
+          with multiple lines
+          of text.
+        `
       }
     ]
 
@@ -94,7 +102,12 @@
     for (const credit of credits) {
       const $credit = creditTemplate.content.cloneNode(true)
       $credit.querySelector('.credit__name').textContent = credit.name
-      $credit.querySelector('.credit__author').textContent = credit.author
+      if (credit.author) {
+        $credit.querySelector('.credit__author').textContent = credit.author
+      } else {
+        $credit.querySelector('.credit__by').remove()
+        $credit.querySelector('.credit__author').remove()
+      }
       $credit.querySelector('.credit__url').href = credit.url
       $credit.querySelector('.credit__license').textContent = credit.license
       document.body.appendChild($credit)
