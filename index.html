@@ -12,6 +12,10 @@
       border-radius: 3px;
     }
 
+    .credit:last-child {
+      margin-bottom: 0;
+    }
+
     .credit__header {
       display: flex;
       flex-direction: row;
@@ -66,12 +70,21 @@
   <script>
     const credits = [
       {
-        name: 'Project',
-        author: 'Author',
+        name: 'Project 1',
+        author: 'Author 1',
         url: 'http://example.com',
         license: `A license
           with multiple lines
-          of text
+          of text.
+        `
+      },
+      {
+        name: 'Project 2',
+        author: 'Author 2',
+        url: 'http://example.com',
+        license: `A license
+          with multiple lines
+          of text.
         `
       }
     ]
