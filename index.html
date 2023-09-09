@@ -35,6 +35,11 @@
       margin-right: 0.5rem;
     }
 
+    .credit__toggle-show-info {
+      display: inline-block;
+      margin-right: 0.5rem;
+    }
+
     .credit__url {
       display: inline-block;
     }
@@ -43,9 +48,21 @@
       white-space: pre;
       display: none;
       margin-top: 0.5rem;
+      overflow: auto;
+    }
+
+    .credit__info {
+      white-space: pre;
+      display: none;
+      margin-top: 0.5rem;
+      overflow: auto;
     }
 
     .credit--show-license .credit__license {
+      display: block;
+    }
+
+    .credit--show-info .credit__info {
       display: block;
     }
   </style>
@@ -54,18 +71,23 @@
   <h1>Credits</h1>
 
   <template id="credit">
-    <div class="credit">
-      <div class="credit__header">
-        <div class="credit__head-line">
-          <span class="credit__name"></span><spac class="credit__by"> by </spac><span class="credit__author"></span>
+      <div class="credit">
+        <div class="credit__header">
+          <div class="credit__head-line">
+            <span class="credit__name"></span
+            ><spac class="credit__by"> by </spac
+            ><span class="credit__author"></span>
+          </div>
+          <div class="credit__links">
+            <a class="credit__toggle-show-license" href="#">Show license</a
+            ><a class="credit__toggle-show-info" href="#">Show info</a
+            ><a class="credit__url" href="#" target="_blank">Website</a>
+          </div>
         </div>
-        <div class="credit__links">
-          <a class="credit__toggle-show-license" href="#">Show license</a><a class="credit__url" href="#" target="_blank">Website</a>
-        </div>
+        <div class="credit__license"></div>
+        <div class="credit__info"></div>
       </div>
-      <div class="credit__license"></div>
-    </div>
-  </template>
+    </template>
 
   <script>
     const credits = [
@@ -92,36 +114,57 @@ of text.`
       }
     ]
 
-    const creditTemplate = document.getElementById('credit')
+    const creditTemplate = document.getElementById("credit")
 
     for (const credit of credits) {
       const $credit = creditTemplate.content.cloneNode(true)
-      $credit.querySelector('.credit__name').textContent = credit.name
+      $credit.querySelector(".credit__name").textContent = credit.name
       if (credit.author) {
-        $credit.querySelector('.credit__author').textContent = credit.author
+        $credit.querySelector(".credit__author").textContent = credit.author
       } else {
-        $credit.querySelector('.credit__by').remove()
-        $credit.querySelector('.credit__author').remove()
+        $credit.querySelector(".credit__by").remove()
+        $credit.querySelector(".credit__author").remove()
       }
-      $credit.querySelector('.credit__url').href = credit.url
+      $credit.querySelector(".credit__url").href = credit.url
       if (credit.license) {
-        $credit.querySelector('.credit__license').textContent = credit.license
+        $credit.querySelector(".credit__license").textContent = credit.license
       } else {
-        const $showLicense = $credit.querySelector('.credit__toggle-show-license')
+        const $showLicense = $credit.querySelector(
+          ".credit__toggle-show-license",
+        )
         if (credit.licenseUrl) {
           $showLicense.href = credit.licenseUrl
-          $showLicense.target = '_blank'
+          $showLicense.target = "_blank"
         }
-        $credit.querySelector('.credit__license').remove()
+        $credit.querySelector(".credit__license").remove()
+      }
+      if (credit.info) {
+        $credit.querySelector(".credit__info").textContent = credit.info
+      } else {
+        $credit.querySelector(".credit__toggle-show-info").remove()
+        $credit.querySelector(".credit__info").remove()
       }
       document.body.appendChild($credit)
     }
 
-    document.addEventListener('click', function (event) {
-      if (event.target.matches(".credit__toggle-show-license") && event.target.getAttribute('href') === "#") {
+    document.addEventListener("click", function (event) {
+      if (
+        event.target.matches(".credit__toggle-show-license") &&
+        event.target.getAttribute("href") === "#"
+      ) {
         event.preventDefault()
-        event.target.textContent = event.target.textContent === "Show license" ? "Hide license" : "Show license"
-        event.target.closest(".credit").classList.toggle("credit--show-license")
+        event.target.textContent =
+          event.target.textContent === "Show license"
+            ? "Hide license"
+            : "Show license"
+        event.target
+          .closest(".credit")
+          .classList.toggle("credit--show-license")
+      } else if (event.target.matches(".credit__toggle-show-info")) {
+        event.preventDefault()
+        event.target.textContent =
+          event.target.textContent === "Show info" ? "Hide info" : "Show info"
+        event.target.closest(".credit").classList.toggle("credit--show-info")
       }
     })
   </script>
