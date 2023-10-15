@@ -135,6 +135,7 @@ of text.`
         if (credit.licenseUrl) {
           $showLicense.href = credit.licenseUrl
           $showLicense.target = "_blank"
+          $showLicense.textContent = "Open license"
         }
         $credit.querySelector(".credit__license").remove()
       }
