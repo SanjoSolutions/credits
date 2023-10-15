@@ -3,7 +3,9 @@
   "type": "module",
   "version": "1.0.0",
   "license": "See LICENSE",
-  "tags": ["credits", "react"],
+  "keywords": ["credits", "react"],
+  "homepage": "https://github.com/SanjoSolutions/credits/tree/main/react",
+  "bugs": "https://github.com/SanjoSolutions/credits/issues",
   "repository": {
     "type": "git",
     "url": "https://github.com/SanjoSolutions/credits.git",
@@ -22,5 +24,8 @@
   },
   "devDependencies": {
     "typescript": "^5.2.2"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
