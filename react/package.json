@@ -1,0 +1,26 @@
+{
+  "name": "@sanjo/credits",
+  "type": "module",
+  "version": "1.0.0",
+  "license": "See LICENSE",
+  "tags": ["credits", "react"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SanjoSolutions/credits.git",
+    "directory": "react"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "main": "./built/Credit.js",
+  "exports": {
+    ".": "./built/Credit.js",
+    "./styles.css": "./src/styles.css"
+  },
+  "peerDependencies": {
+    "react": ">=16.8"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  }
+}
