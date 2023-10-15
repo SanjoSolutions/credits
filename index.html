@@ -1,76 +1,82 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Credits</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    .credit {
-      padding: 0.5rem;
-      background-color: aliceblue;
-      margin-bottom: 1rem;
-      border-radius: 3px;
-    }
+  <head>
+    <meta charset="utf-8" />
+    <title>Credits</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      .credit {
+        padding: 0.5rem;
+        background-color: aliceblue;
+        margin-bottom: 1rem;
+        border-radius: 3px;
+      }
 
-    .credit:last-child {
-      margin-bottom: 0;
-    }
+      .credit:last-child {
+        margin-bottom: 0;
+      }
 
-    .credit__header {
-      display: flex;
-      flex-direction: row;
-    }
+      .credit__header {
+        display: flex;
+        flex-direction: row;
+      }
 
-    .credit__head-line {
-      flex: 1 1 auto;
-      font-weight: bold;
-    }
+      .credit__head-line {
+        flex: 1 1 auto;
+        font-weight: bold;
+      }
 
-    .credit__links {
-      flex: 0 0 auto;
-    }
+      .credit__links {
+        flex: 0 0 auto;
+      }
 
-    .credit__toggle-show-license {
-      display: inline-block;
-      margin-right: 0.5rem;
-    }
+      .credit__toggle-show-license {
+        display: inline-block;
+        margin-right: 0.5rem;
+      }
 
-    .credit__toggle-show-info {
-      display: inline-block;
-      margin-right: 0.5rem;
-    }
+      .credit__toggle-show-info {
+        display: inline-block;
+        margin-right: 0.5rem;
+      }
 
-    .credit__url {
-      display: inline-block;
-    }
+      .credit__url {
+        display: inline-block;
+      }
 
-    .credit__license {
-      white-space: pre;
-      display: none;
-      margin-top: 0.5rem;
-      overflow: auto;
-    }
+      .credit__license {
+        display: none;
+        margin-top: 0.5rem;
+        overflow: auto;
+      }
 
-    .credit__info {
-      white-space: pre;
-      display: none;
-      margin-top: 0.5rem;
-      overflow: auto;
-    }
+      .credit__license > *:last-child {
+        margin-bottom: 0;
+      }
 
-    .credit--show-license .credit__license {
-      display: block;
-    }
+      .credit__info {
+        display: none;
+        margin-top: 0.5rem;
+        overflow: auto;
+      }
 
-    .credit--show-info .credit__info {
-      display: block;
-    }
-  </style>
-</head>
-<body>
-  <h1>Credits</h1>
+      .credit__info > *:last-child {
+        margin-bottom: 0;
+      }
 
-  <template id="credit">
+      .credit--show-license .credit__license {
+        display: block;
+      }
+
+      .credit--show-info .credit__info {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Credits</h1>
+
+    <template id="credit">
       <div class="credit">
         <div class="credit__header">
           <div class="credit__head-line">
@@ -89,85 +95,118 @@
       </div>
     </template>
 
-  <script>
-    const credits = [
-      {
-        name: 'Project 1',
-        author: 'Author 1',
-        url: 'http://example.com',
-        license: `A license
-with multiple lines
-of text.`
-      },
-      {
-        name: 'Project 2',
-        author: 'Author 2',
-        url: 'http://example.com',
-        licenseUrl: 'https://creativecommons.org/licenses/by-sa/3.0/'
-      },
-      {
-        name: 'Project 2',
-        url: 'http://example.com',
-        license: `A license
-with multiple lines
-of text.`
-      }
-    ]
+    <script src="marked.min.js"></script>
+    <script>
+      const credits = [
+        {
+          name: "Project 1",
+          author: "Author 1",
+          url: "http://example.com",
+          license: `The MIT License (MIT)
 
-    const creditTemplate = document.getElementById("credit")
+Copyright (c) \\<year> \\<author>
 
-    for (const credit of credits) {
-      const $credit = creditTemplate.content.cloneNode(true)
-      $credit.querySelector(".credit__name").textContent = credit.name
-      if (credit.author) {
-        $credit.querySelector(".credit__author").textContent = credit.author
-      } else {
-        $credit.querySelector(".credit__by").remove()
-        $credit.querySelector(".credit__author").remove()
-      }
-      $credit.querySelector(".credit__url").href = credit.url
-      if (credit.license) {
-        $credit.querySelector(".credit__license").textContent = credit.license
-      } else {
-        const $showLicense = $credit.querySelector(
-          ".credit__toggle-show-license",
-        )
-        if (credit.licenseUrl) {
-          $showLicense.href = credit.licenseUrl
-          $showLicense.target = "_blank"
-          $showLicense.textContent = "Open license"
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+`,
+        },
+        {
+          name: "Project 2",
+          author: "Author 2",
+          url: "http://example.com",
+          licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/",
+        },
+        {
+          name: "Project 2",
+          url: "http://example.com",
+          license: `The MIT License (MIT)
+
+Copyright (c) \\<year> \\<author>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+`,
+        },
+      ];
+
+      const creditTemplate = document.getElementById("credit");
+
+      for (const credit of credits) {
+        const $credit = creditTemplate.content.cloneNode(true);
+        $credit.querySelector(".credit__name").textContent = credit.name;
+        if (credit.author) {
+          $credit.querySelector(".credit__author").textContent = credit.author;
+        } else {
+          $credit.querySelector(".credit__by").remove();
+          $credit.querySelector(".credit__author").remove();
         }
-        $credit.querySelector(".credit__license").remove()
+        $credit.querySelector(".credit__url").href = credit.url;
+        if (credit.license) {
+          $credit.querySelector(".credit__license").innerHTML = marked.parse(
+            credit.license,
+          );
+        } else {
+          const $showLicense = $credit.querySelector(
+            ".credit__toggle-show-license",
+          );
+          if (credit.licenseUrl) {
+            $showLicense.href = credit.licenseUrl;
+            $showLicense.target = "_blank";
+            $showLicense.textContent = "Open license";
+          }
+          $credit.querySelector(".credit__license").remove();
+        }
+        if (credit.info) {
+          $credit.querySelector(".credit__info").innerHTML = marked.parse(
+            credit.info,
+          );
+        } else {
+          $credit.querySelector(".credit__toggle-show-info").remove();
+          $credit.querySelector(".credit__info").remove();
+        }
+        document.body.appendChild($credit);
       }
-      if (credit.info) {
-        $credit.querySelector(".credit__info").textContent = credit.info
-      } else {
-        $credit.querySelector(".credit__toggle-show-info").remove()
-        $credit.querySelector(".credit__info").remove()
-      }
-      document.body.appendChild($credit)
-    }
 
-    document.addEventListener("click", function (event) {
-      if (
-        event.target.matches(".credit__toggle-show-license") &&
-        event.target.getAttribute("href") === "#"
-      ) {
-        event.preventDefault()
-        event.target.textContent =
-          event.target.textContent === "Show license"
-            ? "Hide license"
-            : "Show license"
-        event.target
-          .closest(".credit")
-          .classList.toggle("credit--show-license")
-      } else if (event.target.matches(".credit__toggle-show-info")) {
-        event.preventDefault()
-        event.target.textContent =
-          event.target.textContent === "Show info" ? "Hide info" : "Show info"
-        event.target.closest(".credit").classList.toggle("credit--show-info")
-      }
-    })
-  </script>
-</body>
+      document.addEventListener("click", function (event) {
+        if (
+          event.target.matches(".credit__toggle-show-license") &&
+          event.target.getAttribute("href") === "#"
+        ) {
+          event.preventDefault();
+          event.target.textContent =
+            event.target.textContent === "Show license"
+              ? "Hide license"
+              : "Show license";
+          event.target
+            .closest(".credit")
+            .classList.toggle("credit--show-license");
+        } else if (event.target.matches(".credit__toggle-show-info")) {
+          event.preventDefault();
+          event.target.textContent =
+            event.target.textContent === "Show info"
+              ? "Hide info"
+              : "Show info";
+          event.target.closest(".credit").classList.toggle("credit--show-info");
+        }
+      });
+    </script>
+  </body>
 </html>
