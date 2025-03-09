@@ -44,6 +44,7 @@
   display: none;
   padding-bottom: 1rem;
   overflow: auto;
+  white-space: pre-line;
 }
 
 .credit__license > *:first-child {
