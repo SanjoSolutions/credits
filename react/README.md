@@ -36,7 +36,7 @@ License text.
     }
 ]
 
-export function Page({ credits }) {
+export function Page() {
   return (
     <>
       <h1>Credits</h1>
