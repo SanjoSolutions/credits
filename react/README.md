@@ -16,7 +16,7 @@ Also requires React to be installed. Can be done with `npm install react`.
 
 ```js
 import { Credit } from "@sanjo/credits"
-import "@sanjo/credits/Credit.css"
+import "@sanjo/credits/styles.css"
 
 const credits = [
     {
